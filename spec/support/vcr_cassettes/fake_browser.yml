@@ -1,0 +1,136 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://www.nasdaqomxnordic.com/webproxy/DataFeedProxy.aspx
+    body:
+      encoding: US-ASCII
+      string: ! 'xmlquery=<post>
+
+        <param name="SubSystem" value="History"/>
+
+        <param name="Action" value="GetDataSeries"/>
+
+        <param name="AppendIntraDay" value="no"/>
+
+        <param name="Instrument" value="SSE3966"/>
+
+        <param name="FromDate" value="2012-01-01"/>
+
+        <param name="ToDate" value="2012-01-08"/>
+
+        <param name="hi__a" value="0,1,2,4,21,8,10,11,12,9"/>
+
+        <param name="ext_xslt" value="/nordicV3/hi_table_shares_adjusted.xsl"/>
+
+        <param name="ext_xslt_options" value=",undefined,"/>
+
+        <param name="ext_xslt_lang" value="sv"/>
+
+        <param name="ext_xslt_hiddenattrs" value=",ip,iv,"/>
+
+        <param name="ext_xslt_tableId" value="historicalTable"/>
+
+        <param name="app" value="/aktier/Historiska_kurser/"/>
+
+        </post>
+
+'
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0a2) Gecko/20111101 Firefox/9.0a2
+      X-Requested-With:
+      - XMLHttpRequest
+      Referer:
+      - http://www.nasdaqomxnordic.com/aktier/Historiska_kurser/?Instrument=SSE3966
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        cHJpdmF0ZSwgbWF4LWFnZT0zMA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTY5Mg==
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        dGV4dC9odG1sO2NoYXJzZXQ9dXRmLTg=
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        RnJpLCAyMSBKdW4gMjAxMyAxODozNDoxMyBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        RnJpLCAyMSBKdW4gMjAxMyAxODozMzo0MyBHTVQ=
+      !binary "VmFyeQ==":
+      - !binary |-
+        Kg==
+      !binary "U2VydmVy":
+      - !binary |-
+        TWljcm9zb2Z0LUlJUy83LjU=
+      !binary "WC1Bc3BuZXQtVmVyc2lvbg==":
+      - !binary |-
+        Mi4wLjUwNzI3
+      !binary "U2V0LUNvb2tpZQ==":
+      - !binary |-
+        QVNQLk5FVF9TZXNzaW9uSWQ9ZWZhY2h1cnh4bnZ2cXdqcGlrNGMyeW0wOyBw
+        YXRoPS87IEh0dHBPbmx5
+      - !binary |-
+        TlNDX01DX09idGVicnBueW9wc2VqZF9JVVVRPWZmZmZmZmZmMDliZTBlMDE0
+        NTUyNWQ1ZjRmNTg0NTVlNDQ1YTRhNDIzNjYwO3BhdGg9LztodHRwb25seQ==
+      !binary "WC1Qb3dlcmVkLUJ5":
+      - !binary |-
+        QVNQLk5FVA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        RnJpLCAyMSBKdW4gMjAxMyAxODozMzo0MyBHTVQ=
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PHRhYmxlIGlkPSJoaXN0b3JpY2FsVGFibGUiIGNsYXNzPSJ0YWJsZXNvcnRl
+        ciIgYm9yZGVyPSIwIiBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAi
+        IG5hbWU9Il8iPg0KICA8dGhlYWQ+DQogICAgPHRyPg0KICAgICAgPHRoIHRp
+        dGxlPSJEYXR1bSI+RGF0dW08L3RoPg0KICAgICAgPHRoIHRpdGxlPSJIw7Zn
+        c3RhIGt1cnMiPkjDtmdzdGEga3VyczwvdGg+DQogICAgICA8dGggdGl0bGU9
+        IkzDpGdzdGEga3VycyI+TMOkZ3N0YSBrdXJzPC90aD4NCiAgICAgIDx0aCB0
+        aXRsZT0iU3TDpG5nbmluZ3NrdXJzIj5TdMOkbmduLmt1cnM8L3RoPg0KICAg
+        ICAgPHRoIHRpdGxlPSJBdmVyYWdlIHByaWNlIj5BdmVyYWdlIHByaWNlPC90
+        aD4NCiAgICAgIDx0aCB0aXRsZT0iVG90YWwgdm9seW0iPlRvdC4gdm9sLjwv
+        dGg+DQogICAgICA8dGggdGl0bGU9Ik9tc8OkdHRuaW5nIj5PbXM8L3RoPg0K
+        ICAgICAgPHRoIHRpdGxlPSJBbnRhbCBhdnNsdXQiPkF2c2x1dDwvdGg+DQog
+        ICAgPC90cj4NCiAgPC90aGVhZD4NCiAgPHRib2R5Pg0KICAgIDx0ciBpZD0i
+        aGlzdG9yaWNhbFRhYmxlLSI+DQogICAgICA8dGQ+MjAxMi0wMS0wMjwvdGQ+
+        DQogICAgICA8dGQ+MTM0LDgwPC90ZD4NCiAgICAgIDx0ZD4xMjksMDA8L3Rk
+        Pg0KICAgICAgPHRkPjEzMyw5MDwvdGQ+DQogICAgICA8dGQ+MTMyLDYzPC90
+        ZD4NCiAgICAgIDx0ZD4xIDE3MyA5MjM8L3RkPg0KICAgICAgPHRkPjE1NSA3
+        MDAgNDEwPC90ZD4NCiAgICAgIDx0ZD4xIDk2NzwvdGQ+DQogICAgPC90cj4N
+        CiAgICA8dHIgaWQ9Imhpc3RvcmljYWxUYWJsZS0iPg0KICAgICAgPHRkPjIw
+        MTItMDEtMDM8L3RkPg0KICAgICAgPHRkPjEzNSw5MDwvdGQ+DQogICAgICA8
+        dGQ+MTMyLDcwPC90ZD4NCiAgICAgIDx0ZD4xMzUsNzA8L3RkPg0KICAgICAg
+        PHRkPjEzNCw1MDwvdGQ+DQogICAgICA8dGQ+MiAxODAgMjA0PC90ZD4NCiAg
+        ICAgIDx0ZD4yOTMgMjQ1IDk3OTwvdGQ+DQogICAgICA8dGQ+MyA3ODU8L3Rk
+        Pg0KICAgIDwvdHI+DQogICAgPHRyIGlkPSJoaXN0b3JpY2FsVGFibGUtIj4N
+        CiAgICAgIDx0ZD4yMDEyLTAxLTA0PC90ZD4NCiAgICAgIDx0ZD4xMzUsNjA8
+        L3RkPg0KICAgICAgPHRkPjEzMyw5MDwvdGQ+DQogICAgICA8dGQ+MTM0LDcw
+        PC90ZD4NCiAgICAgIDx0ZD4xMzQsNjQ8L3RkPg0KICAgICAgPHRkPjEgNTUz
+        IDY5MzwvdGQ+DQogICAgICA8dGQ+MjA5IDE5MyA0NDg8L3RkPg0KICAgICAg
+        PHRkPjMgNDM4PC90ZD4NCiAgICA8L3RyPg0KICAgIDx0ciBpZD0iaGlzdG9y
+        aWNhbFRhYmxlLSI+DQogICAgICA8dGQ+MjAxMi0wMS0wNTwvdGQ+DQogICAg
+        ICA8dGQ+MTM1LDQwPC90ZD4NCiAgICAgIDx0ZD4xMzQsMjA8L3RkPg0KICAg
+        ICAgPHRkPjEzNCw5MDwvdGQ+DQogICAgICA8dGQ+MTM0LDkwPC90ZD4NCiAg
+        ICAgIDx0ZD41NjggMDc4PC90ZD4NCiAgICAgIDx0ZD43NiA2MzIgMjM2PC90
+        ZD4NCiAgICAgIDx0ZD4xIDE2MjwvdGQ+DQogICAgPC90cj4NCiAgICA8dHIg
+        aWQ9Imhpc3RvcmljYWxUYWJsZS0iPg0KICAgICAgPHRkPjIwMTItMDEtMDY8
+        L3RkPg0KICAgICAgPHRkPjwvdGQ+DQogICAgICA8dGQ+PC90ZD4NCiAgICAg
+        IDx0ZD4xMzQsOTA8L3RkPg0KICAgICAgPHRkPjwvdGQ+DQogICAgICA8dGQ+
+        PC90ZD4NCiAgICAgIDx0ZD48L3RkPg0KICAgICAgPHRkPjwvdGQ+DQogICAg
+        PC90cj4NCiAgPC90Ym9keT4NCjwvdGFibGU+
+    http_version: 
+  recorded_at: Fri, 21 Jun 2013 18:33:43 GMT
+recorded_with: VCR 2.5.0
