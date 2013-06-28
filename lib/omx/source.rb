@@ -18,7 +18,7 @@ module Omx
       @http = Connection.new
     end
 
-    def closing_price(ticker, date)
+    def closing_price(ticker, date=Time.now.to_date.to_s)
       to = date.to_s.match(/^\d{4}$/) ? end_of_year(date) : date
       from = (Date.parse(to) - 7.days).to_s(:db)
       body = http.post(INSTRUMENT[ticker], from, to)
