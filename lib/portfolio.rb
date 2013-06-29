@@ -1,7 +1,7 @@
 class Portfolio
   attr_reader :growth, :date, :stocks, :prices
 
-  def initialize date=nil, stocks={}, growth=1, prices={}
+  def initialize date=nil, stocks={}, growth=0, prices={}
     @date = date
     @stocks = stocks
     @growth = growth
@@ -9,7 +9,7 @@ class Portfolio
   end
 
   def transaction date, ticker, quantity, price
-    return self.class.new date, { ticker => quantity }, 1, { ticker => price } unless self.date
+    return self.class.new date, { ticker => quantity }, 1.0, { ticker => price } unless self.date
 
     period_growth = self.value(date: date, prices: {ticker => price}) / self.value
     stocks_after_transaction = stocks.merge({ticker => quantity}) {|key, before, added| before + added }

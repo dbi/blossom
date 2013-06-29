@@ -39,8 +39,8 @@ describe Portfolio do
     end
 
     it "calculates growth for one stock" do
-      portfolio.transaction("2001-01-01", "indu-c", 1000, 92).
-        transaction("2001-01-02", "indu-c", 1000, 101.2).
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 92).
+        transaction("2011-01-02", "indu-c", 1000, 101.2).
         growth.should eql 1.1
     end
 
