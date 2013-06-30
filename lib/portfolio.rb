@@ -1,7 +1,7 @@
 require 'omx'
 
 class Portfolio
-  attr_reader :growth, :date, :stocks, :prices
+  attr_reader :date, :stocks, :prices
 
   def initialize date=nil, stocks={}, growth=0, prices={}
     @date = date
@@ -13,9 +13,10 @@ class Portfolio
   def transaction date, ticker, quantity, price
     return self.class.new date, { ticker => quantity }, 1.0, { ticker => price } unless self.date
 
-    period_growth = self.value(date: date, prices: {ticker => price}) / self.value
+    value_at_start = self.value
+    value_at_end = self.value(date: date, prices: {ticker => price})
+    period_growth =  value_at_end / value_at_start
     stocks_after_transaction = stocks.merge({ticker => quantity}) {|key, before, added| before + added }
-
     self.class.new date, stocks_after_transaction, growth * period_growth, { ticker => price }
   end
 
@@ -27,14 +28,22 @@ class Portfolio
   #
   # Returns nothing.
   def value(options={})
-    actual_prices = options.fetch(:prices, {})
+    actual_prices = options.fetch(:prices, prices)
     actual_date = options.fetch(:date, date)
     value = 0
-    @stocks.each do |ticker, quantity|
-      price = actual_prices[ticker] || prices[ticker] || omx.closing_price(ticker, actual_date)
+    stocks.each do |ticker, quantity|
+      price = actual_prices[ticker] || omx.closing_price(ticker, actual_date)
       value += quantity * price
     end
     value
+  end
+
+  def growth(date=nil)
+    if date
+      @growth * self.value(date: date, prices: {}) / self.value # TODO: that we need to send in prices here is brittle
+    else
+      @growth
+    end
   end
 
   private

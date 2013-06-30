@@ -31,6 +31,31 @@ describe Portfolio do
       p.value(date: "2011-02-02").should eql 1000 * 77.77
     end
 
+    it "calculates values for multiple stocks" do
+      Omx::Source.any_instance.should_receive(:closing_price).with("indu-c", "2011-02-02").and_return(20.05)
+      Omx::Source.any_instance.should_receive(:closing_price).with("hm-b", "2011-02-02").and_return(10.15)
+      p = Portfolio.new "2011-01-01", { "indu-c" => 100, "hm-b" => 100 }
+      p.value(date: "2011-02-02").should eql 3020.0
+    end
+
+    it "ignores all explicit from #initialize of available in #value" do
+      Omx::Source.any_instance.should_receive(:closing_price).with("hm-b", "2011-02-02").and_return(10.15)
+      p = Portfolio.new "2011-01-01", { "indu-c" => 100, "hm-b" => 100 }, 1.0, { "hm-b" => 90.0 }
+      p.value(date: "2011-02-02", prices: { "indu-c" => 100.0 }).should eql 11015.0
+    end
+
+  end
+
+  describe "#growth" do
+    let(:portfolio) { Portfolio.new }
+
+    it "calculates growth to the current date" do
+      Omx::Source.any_instance.should_receive(:closing_price).with("indu-c", "2011-01-02").and_return(101.2)
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 92).
+        transaction("2011-01-02", "hm-b", 1000, 130.0).
+        growth.should eql 1.1
+    end
+
   end
 
   describe "#transaction" do
@@ -44,6 +69,15 @@ describe Portfolio do
       portfolio.transaction("2011-01-01", "indu-c", 1000, 92).
         transaction("2011-01-02", "indu-c", 1000, 101.2).
         growth.should eql 1.1
+    end
+
+    it "calculates growth for multiple stocks" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-02").and_return(92.0)
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-03").and_return(101.2)
+      Omx::Source.any_instance.stub(:closing_price).with("hm-b", "2011-01-03").and_return(145.2)
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 92.0).
+        transaction("2011-01-02", "hm-b", 1000, 132).
+        growth("2011-01-03").should eql 1.1
     end
 
   end
