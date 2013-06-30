@@ -1,3 +1,5 @@
+require 'omx'
+
 class Portfolio
   attr_reader :growth, :date, :stocks, :prices
 
