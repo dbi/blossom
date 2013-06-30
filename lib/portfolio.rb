@@ -20,6 +20,13 @@ class Portfolio
     self.class.new date, stocks_after_transaction, growth * period_growth, { ticker => price }
   end
 
+  def dividend date, ticker, amount
+    value_after_dividends = self.value(date: date, prices: {}) + stocks[ticker] * amount
+    period_growth = value_after_dividends / self.value
+
+    Portfolio.new date, stocks, growth * period_growth
+  end
+
   # Calculates the value of the enture portfolio.
   #
   # options - Used to redefine how value is calculated:

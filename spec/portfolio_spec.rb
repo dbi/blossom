@@ -97,6 +97,32 @@ describe Portfolio do
   end
 
   describe "#dividend" do
+    let(:portfolio) { Portfolio.new }
+
+    it "calculates growth including dividends" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-02").and_return(110.00)
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 100.0).
+        dividend("2011-01-02", "indu-c", 4.5).
+        growth.should eql 1.145
+    end
+
+    it "calculates growth after dividend" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-02").and_return(110.00)
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-03").and_return(121.00)
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 100.0).
+        dividend("2011-01-02", "indu-c", 4.5).
+        growth("2011-01-03").should eql 1.2595
+    end
+
+    it "calculates growth after multiple dividends" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-02").and_return(110.00)
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-03").and_return(121.00)
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-04").and_return(121.00)
+      portfolio.transaction("2011-01-01", "indu-c", 1000, 100.0).
+        dividend("2011-01-02", "indu-c", 4.5).
+        dividend("2011-01-03", "indu-c", 4.5).
+        growth("2011-01-04").should eql 1.306340909090909
+    end
 
   end
 
