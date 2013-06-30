@@ -1,5 +1,7 @@
 require 'portfolio'
 require 'omx'
+require 'webmock'
+WebMock.disable_net_connect!
 
 describe Portfolio do
 
