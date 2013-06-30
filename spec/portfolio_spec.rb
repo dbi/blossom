@@ -80,6 +80,20 @@ describe Portfolio do
         growth("2011-01-03").should eql 1.1
     end
 
+    it "calculates growth for reinvestments" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-03").and_return(121.44)
+      portfolio.transaction("2011-01-02", "indu-c", 1000, 92.0).
+        transaction("2011-01-03", "indu-c", 1000, 101.2).
+        growth("2011-01-03").should eql 1.32
+    end
+
+    it "calculates growth after sales" do
+      Omx::Source.any_instance.stub(:closing_price).with("indu-c", "2011-01-03").and_return(121.44)
+      portfolio.transaction("2011-01-02", "indu-c", 1000, 92.0).
+        transaction("2011-01-03", "indu-c", -200, 101.2).
+        growth("2011-01-03").should eql 1.32
+    end
+
   end
 
   describe "#dividend" do
