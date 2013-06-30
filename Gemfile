@@ -4,6 +4,7 @@ gem 'patron'
 gem 'activesupport'
 
 group :test do
+  gem 'pry'
   gem 'rspec'
   gem 'vcr'
   gem 'webmock'
