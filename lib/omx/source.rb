@@ -15,11 +15,13 @@ module Omx
     }
 
     def closing_price(ticker, date=Time.now.to_date.to_s)
-      to = date.to_s.match(/^\d{4}$/) ? end_of_year(date) : date
-      from = (Date.parse(to) - 7.days).to_s(:db)
-      body = http.post(INSTRUMENT[ticker], from, to)
+      persistence.store(ticker, date) do
+        to = date.to_s.match(/^\d{4}$/) ? end_of_year(date) : date
+        from = (Date.parse(to) - 7.days).to_s(:db)
+        body = http.post(INSTRUMENT[ticker], from, to)
 
-      Parser.new(body).closing_price
+        Parser.new(body).closing_price
+      end
     end
 
     private
@@ -28,8 +30,18 @@ module Omx
       @http ||= Connection.new
     end
 
+    def persistence
+      @persistence ||= NoPersistence.new
+    end
+
     def end_of_year(year)
       (Date.new(year.to_i + 1, 1, 1) - 1.day).to_s(:db)
+    end
+
+    class NoPersistence
+      def store(key, value)
+        yield
+      end
     end
 
   end
