@@ -16,6 +16,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    redis (3.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -37,6 +38,7 @@ DEPENDENCIES
   activesupport
   patron
   pry
+  redis
   rspec
   vcr
   webmock
