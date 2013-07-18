@@ -16,6 +16,13 @@ module Omx
       "hm-b" => "SSE992"
     }
 
+    # Initializes a snapshot of a stock portfolio.
+    #
+    # options - :persistence - A object that is reponsible for persisting dates and stock
+    #                          prices. The object should repond to #store(ticker, date)
+    #                          yield the method parameters and repond with the result of
+    #                          the yield.
+    #
     def initialize(options={})
       @persistence = options.fetch(:persistence, NoPersistence.new)
     end
