@@ -1,5 +1,6 @@
 if defined? Rspec
-  # settings only for test environment
+  # only for test environment
 else
-  # production persistance etc.
+  require "blossom/redis_persistence"
+  self.persistence = Blossom::RedisPersistence.new
 end
