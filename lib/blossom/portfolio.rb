@@ -8,6 +8,7 @@ class Portfolio
     @stocks = stocks
     @growth = growth
     @prices = prices
+    # i can validate the portfolio here without cluttering the transaction method etc.
   end
 
   def transaction date, ticker, quantity, price

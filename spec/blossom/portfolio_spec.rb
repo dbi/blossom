@@ -1,5 +1,5 @@
 require 'webmock'
-require 'portfolio'
+require 'blossom/portfolio'
 
 WebMock.disable_net_connect!
 

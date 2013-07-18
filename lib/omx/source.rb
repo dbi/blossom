@@ -1,8 +1,8 @@
 require "patron"
-require 'active_support/all'
+require "active_support/all"
 require "omx/connection"
 require "omx/parser"
-require "config"
+require "blossom/config"
 
 module Omx
   class Source

@@ -16,7 +16,7 @@ module Blossom
       end
 
       def app_path
-        File.absolute_path(File.join(__FILE__, '..', '..'))
+        File.absolute_path(File.join(__FILE__, '..', '..', '..'))
       end
 
       def config_path
