@@ -13,7 +13,8 @@ module Omx
       "kinnevik-b" => "SSE999",
       "ratos-b" => "SSE1045",
       "duni" => "SSE49775",
-      "hm-b" => "SSE992"
+      "hm-b" => "SSE992",
+      "omx-stockholm-30-gi" => "SE0002402800"
     }
 
     # Initializes a snapshot of a stock portfolio.
