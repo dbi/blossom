@@ -24,7 +24,7 @@ module Omx
     #                          the yield.
     #
     def initialize(options={})
-      @persistence = options.fetch(:persistence, NoPersistence.new)
+      @persistence = options[:persistence] || NoPersistence.new
     end
 
     def closing_price(ticker, date=Time.now.to_date.to_s)
