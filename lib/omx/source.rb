@@ -8,15 +8,23 @@ module Omx
   class Source
     attr_reader :persistence
 
+    TICKER_CONVERSION_TABLE = {
+      "indu-c" => "SSE3966",
+      "kinnevik-b" => "SSE999",
+      "ratos-b" => "SSE1045",
+      "duni" => "SSE49775",
+      "hm-b" => "SSE992"
+    }
+
     def initialize(options={})
-      @persistence = Blossom::Config.persistence || NoPersistence.new
+      @persistence = options.fetch(:persistence, NoPersistence.new)
     end
 
     def closing_price(ticker, date=Time.now.to_date.to_s)
       persistence.store(ticker, date) do
         to = date.to_s.match(/^\d{4}$/) ? end_of_year(date) : date
         from = (Date.parse(to) - 7.days).to_s(:db)
-        body = http.post(Blossom::Config.omx_symbols[ticker], from, to)
+        body = http.post(TICKER_CONVERSION_TABLE[ticker], from, to)
 
         Parser.new(body).closing_price
       end

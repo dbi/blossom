@@ -58,7 +58,7 @@ module Blossom
     private
 
     def omx
-      @omx ||= Omx::Source.new
+      @omx ||= Omx::Source.new(persistence: Blossom::Config.persistence)
     end
 
   end
