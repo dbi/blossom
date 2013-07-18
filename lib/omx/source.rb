@@ -9,7 +9,7 @@ module Omx
     attr_reader :persistence
 
     TICKER_CONVERSION_TABLE = {
-      "indu-c" => "SSE3966",
+      "indu-c" => "SSE143",
       "kinnevik-b" => "SSE999",
       "ratos-b" => "SSE1045",
       "duni" => "SSE49775",
